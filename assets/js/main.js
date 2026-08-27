@@ -4,68 +4,7 @@
   const config = window.UPILATE_CONFIG || {};
   const isConfigured = (value) => value && !String(value).includes("YOUR_");
 
-  // Add canonical and factual brand markup only after the final domain is configured.
-  if (isConfigured(config.siteUrl)) {
-    try {
-      const siteBase = new URL(config.siteUrl);
-      if (!siteBase.pathname.endsWith("/")) siteBase.pathname += "/";
-      siteBase.search = "";
-      siteBase.hash = "";
-
-      const fileName = window.location.pathname.split("/").filter(Boolean).pop() || "index.html";
-      const canonicalUrl = new URL(fileName === "index.html" ? "" : fileName, siteBase).href;
-      let canonical = document.querySelector('link[rel="canonical"]');
-      if (!canonical) {
-        canonical = document.createElement("link");
-        canonical.rel = "canonical";
-        document.head.appendChild(canonical);
-      }
-      canonical.href = canonicalUrl;
-
-      let openGraphUrl = document.querySelector('meta[property="og:url"]');
-      if (!openGraphUrl) {
-        openGraphUrl = document.createElement("meta");
-        openGraphUrl.setAttribute("property", "og:url");
-        document.head.appendChild(openGraphUrl);
-      }
-      openGraphUrl.content = canonicalUrl;
-
-      if (fileName === "index.html" && !document.querySelector("[data-site-schema]")) {
-        const schema = document.createElement("script");
-        schema.type = "application/ld+json";
-        schema.dataset.siteSchema = "";
-        schema.textContent = JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              "@id": `${siteBase.href}#organization`,
-              name: "UPILATE",
-              url: siteBase.href,
-              logo: new URL("assets/images/upilate-logo.png", siteBase).href,
-              description: "B2B supply of commercial Pilates equipment, aerial yoga products and custom grip socks for studios and distributors.",
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+86 131 7559 2862",
-                contactType: "sales",
-                availableLanguage: ["English", "Chinese"]
-              }
-            },
-            {
-              "@type": "WebSite",
-              "@id": `${siteBase.href}#website`,
-              url: siteBase.href,
-              name: "UPILATE",
-              publisher: { "@id": `${siteBase.href}#organization` }
-            }
-          ]
-        });
-        document.head.appendChild(schema);
-      }
-    } catch (error) {
-      // Keep local previews and unconfigured copies free of placeholder canonicals.
-    }
-  }
+  // Canonical URLs and factual schema are emitted statically in each HTML head.
 
   // Mobile navigation
   const navToggle = document.querySelector("[data-nav-toggle]");
@@ -115,6 +54,10 @@
       if (isConfigured(config.whatsappNumber)) {
         const number = String(config.whatsappNumber).replace(/\D/g, "");
         const url = `https://wa.me/${number}?text=${encodeURIComponent(buildWhatsAppMessage(button))}`;
+        trackEvent("whatsapp_click", {
+          product_interest: button.dataset.waProduct || "UPILATE studio equipment",
+          page_path: window.location.pathname
+        });
         window.open(url, "_blank", "noopener,noreferrer");
       } else {
         const inquiry = document.querySelector("#inquiry");
@@ -210,6 +153,23 @@
       productCards.forEach((card) => {
         const visible = filter === "all" || card.dataset.category === filter;
         card.hidden = !visible;
+      });
+    });
+  });
+
+  // Record deliberate product-card interactions without sending buyer details.
+  document.querySelectorAll(".product-card .actions a").forEach((link) => {
+    link.addEventListener("click", () => {
+      const card = link.closest(".product-card");
+      const itemName = card && card.querySelector("h3")
+        ? card.querySelector("h3").textContent.trim()
+        : "UPILATE product";
+      const itemCategory = card && card.querySelector(".tag")
+        ? card.querySelector(".tag").textContent.trim()
+        : "Product";
+      trackEvent("view_item", {
+        item_list_name: document.title.replace(/\s*\|\s*UPILATE.*$/i, ""),
+        items: [{ item_name: itemName, item_category: itemCategory }]
       });
     });
   });

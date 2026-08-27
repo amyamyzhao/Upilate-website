@@ -1,0 +1,8 @@
+# Preserve old file-style URLs while declaring clean URLs as permanent.
+/index.html / 301
+/products.html /products 301
+/grip-socks.html /grip-socks 301
+/studio-solutions.html /studio-solutions 301
+/why-upilate.html /why-upilate 301
+/contact.html /contact 301
+/privacy.html /privacy 301

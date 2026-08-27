@@ -34,17 +34,12 @@
   function buildWhatsAppMessage(element) {
     const product = element.dataset.waProduct || "UPILATE studio equipment";
     const intent = element.dataset.waIntent || "a quotation";
-    const page = document.title.replace(/\s*\|\s*UPILATE.*$/i, "");
     return [
-      `Hello UPILATE, I'm interested in ${product}.`,
-      `I would like ${intent}.`,
+      `Hello UPILATE team, I'm interested in ${product} and would like ${intent}.`,
       "",
-      "Country / region:",
-      "Business type:",
-      "Required quantity:",
-      "Target delivery date:",
+      "Could you please send me more information about the available options and let me know what details you need to prepare the right recommendation and quotation?",
       "",
-      `Source page: ${page}`
+      "Thank you."
     ].join("\n");
   }
 

@@ -58,9 +58,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   transition: box-shadow .25s ease, border-color .25s ease;
 }
 .site-header.is-scrolled { border-color: var(--line); box-shadow: 0 10px 30px rgba(35, 33, 30, .06); }
-.nav { height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.brand { display: inline-flex; align-items: center; width: 150px; flex: 0 0 auto; }
-.brand img { width: 100%; height: 58px; object-fit: contain; object-position: left center; }
+.nav { height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.brand { position: relative; display: inline-flex; align-items: center; width: 210px; height: 66px; overflow: hidden; flex: 0 0 auto; }
+.brand img { position: absolute; top: -5px; left: 0; width: 100%; height: auto; object-fit: contain; object-position: left top; clip-path: inset(0 0 40% 0); }
+.brand::after { content: "PILATES · GRIP SOCKS"; position: absolute; left: 25%; bottom: 4px; color: var(--ink); font-size: .46rem; font-weight: 700; letter-spacing: .22em; line-height: 1; white-space: nowrap; }
 .nav-menu { display: flex; align-items: center; gap: 1.6rem; margin-left: auto; }
 .nav-menu > a:not(.btn) { font-size: .88rem; color: var(--ink-soft); }
 .nav-menu > a:not(.btn):hover, .nav-menu > a.is-active { color: var(--ink); }
@@ -258,15 +259,15 @@ h3 { line-height: 1.18; }
 .product-card.sock-card .image img { object-fit: cover; object-position: center center; }
 .sock-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
-.sock-hero { overflow: hidden; background: linear-gradient(135deg, #f5f0e8 0%, #eee4dc 100%); }
+.sock-hero { overflow: hidden; background: linear-gradient(105deg, #f2eadf 0%, #f5f0e8 44%, #faf7f1 72%, #f3e8dc 100%); }
 .sock-hero-grid { min-height: 720px; display: grid; grid-template-columns: minmax(0, .88fr) minmax(420px, 1.12fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
 .sock-hero-copy { padding: clamp(5rem, 9vw, 8rem) 0; }
 .sock-hero-copy h1 { font-size: clamp(3.3rem, 6vw, 6.2rem); margin-bottom: 1.5rem; }
 .sock-hero-copy > p:not(.eyebrow) { color: var(--ink-soft); font-size: 1.06rem; max-width: 600px; }
 .sock-hero-media { position: relative; align-self: stretch; min-height: 680px; overflow: hidden; border-radius: 0 0 0 7rem; }
 .sock-hero-media > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.sock-material-hero { padding: clamp(1.1rem, 2.5vw, 2.2rem); display: grid; place-items: center; background: #fff; }
-.sock-material-hero > img { object-fit: contain; object-position: center; }
+.sock-material-hero { padding: clamp(1.1rem, 2.5vw, 2.2rem); display: grid; place-items: center; border-radius: 0; background-color: #f6f1e9; background-image: url("../images/sock-custom-logo-color-site-style.png"), linear-gradient(105deg, #f7f3ec 0%, #f7f1e9 58%, #f3e8dc 100%); background-repeat: no-repeat, no-repeat; background-position: center, center; background-size: calc(100% - clamp(2.2rem, 5vw, 4.4rem)) auto, cover; background-blend-mode: multiply, normal; }
+.sock-material-hero > img { object-fit: contain; object-position: center; opacity: 0; }
 .sock-hero-note { position: absolute; left: 1.5rem; bottom: 1.5rem; width: min(340px, calc(100% - 3rem)); padding: 1.2rem 1.35rem; background: rgba(255,253,249,.93); backdrop-filter: blur(12px); border-radius: 1rem; box-shadow: var(--shadow); }
 .sock-hero-note strong { display: block; font-family: var(--serif); font-size: 1.35rem; font-weight: 400; }
 .sock-hero-note span { color: var(--ink-soft); font-size: .78rem; }
@@ -324,7 +325,9 @@ h3 { line-height: 1.18; }
 
 .site-footer { background: #171613; color: white; padding: 4.5rem 0 1.5rem; }
 .footer-top { display: grid; grid-template-columns: 1.2fr repeat(3, .55fr); gap: 3rem; padding-bottom: 4rem; }
-.footer-brand img { width: 170px; filter: invert(1) brightness(3); margin-bottom: 1.3rem; }
+.footer-brand { position: relative; }
+.footer-brand img { width: 240px; height: auto; filter: invert(1) brightness(3); clip-path: inset(0 0 40% 0); margin: -1rem 0 -0.6rem; }
+.footer-brand::after { content: "PILATES · GRIP SOCKS"; position: absolute; top: 56px; left: 60px; color: rgba(255,255,255,.88); font-size: .48rem; font-weight: 700; letter-spacing: .22em; line-height: 1; white-space: nowrap; }
 .footer-brand p { max-width: 400px; color: rgba(255,255,255,.58); font-size: .82rem; }
 .footer-col h3 { margin-bottom: 1rem; font-size: .72rem; text-transform: uppercase; letter-spacing: .15em; color: var(--sand); }
 .footer-col a { display: block; margin: .55rem 0; color: rgba(255,255,255,.7); font-size: .8rem; }
@@ -344,6 +347,8 @@ h3 { line-height: 1.18; }
 [data-reveal].is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 1050px) {
+  .brand { width: 185px; height: 62px; }
+  .brand::after { font-size: .43rem; }
   .nav-menu { gap: 1rem; }
   .nav-menu > a:not(.btn) { font-size: .8rem; }
   .hero-grid, .solution-hero-grid { grid-template-columns: 1fr 1fr; }
@@ -362,11 +367,11 @@ h3 { line-height: 1.18; }
 @media (max-width: 800px) {
   :root { --container: min(100% - 30px, 680px); }
   .announcement span:not(:first-child) { display: none; }
-  .nav { height: 70px; }
-  .brand { width: 125px; }
-  .brand img { height: 48px; }
+  .nav { height: 76px; }
+  .brand { width: 175px; height: 58px; }
+  .brand::after { bottom: 3px; font-size: .42rem; letter-spacing: .2em; }
   .nav-toggle { display: block; }
-  .nav-menu { position: fixed; inset: 108px 0 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 1.2rem 1.2rem 2rem; background: var(--paper); transform: translateX(100%); transition: transform .28s ease; overflow-y: auto; }
+  .nav-menu { position: fixed; inset: 114px 0 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 1.2rem 1.2rem 2rem; background: var(--paper); transform: translateX(100%); transition: transform .28s ease; overflow-y: auto; }
   .nav-menu.is-open { transform: translateX(0); }
   .nav-menu > a:not(.btn) { padding: 1.1rem .4rem; border-bottom: 1px solid var(--line); font-size: 1rem; }
   .nav-menu .btn { margin-top: 1.2rem; }
@@ -375,6 +380,7 @@ h3 { line-height: 1.18; }
   .hero-media, .solution-hero-media, .sock-hero-media { min-height: 520px; }
   .hero-media::before { display: none; }
   .sock-hero-media { border-radius: var(--radius) var(--radius) 0 0; }
+  .sock-material-hero { border-radius: 0; }
   .audience-grid { grid-template-columns: repeat(2, 1fr); padding: 1rem 0; }
   .audience-grid > * { border: 0; padding: .7rem .2rem; }
   .audience-grid > .label { grid-column: 1/-1; }
@@ -432,6 +438,8 @@ h3 { line-height: 1.18; }
   .field.full { grid-column: auto; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-brand { grid-column: auto; }
+  .footer-brand img { width: 220px; }
+  .footer-brand::after { top: 50px; left: 55px; font-size: .44rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .info-row { grid-template-columns: 1fr; gap: .4rem; }
   .whatsapp-float { right: .8rem; bottom: .8rem; width: 54px; height: 54px; }

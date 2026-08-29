@@ -152,8 +152,8 @@
     });
   });
 
-  // Record deliberate product-card interactions without sending buyer details.
-  document.querySelectorAll(".product-card .actions a").forEach((link) => {
+  // Record product-list selections. The actual detail-page view is recorded separately.
+  document.querySelectorAll("[data-product-link]").forEach((link) => {
     link.addEventListener("click", () => {
       const card = link.closest(".product-card");
       const itemName = card && card.querySelector("h3")
@@ -162,12 +162,25 @@
       const itemCategory = card && card.querySelector(".tag")
         ? card.querySelector(".tag").textContent.trim()
         : "Product";
-      trackEvent("view_item", {
+      trackEvent("select_item", {
         item_list_name: document.title.replace(/\s*\|\s*UPILATE.*$/i, ""),
         items: [{ item_name: itemName, item_category: itemCategory }]
       });
     });
   });
+
+  // Product gallery keeps the original artwork intact and changes only the selected view.
+  const galleryMain = document.querySelector("[data-gallery-main]");
+  const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
+  if (galleryMain && galleryThumbs.length) {
+    galleryThumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        galleryMain.src = thumb.dataset.image;
+        galleryMain.alt = thumb.dataset.alt || "Custom Pilates grip sock product view";
+        galleryThumbs.forEach((item) => item.classList.toggle("is-active", item === thumb));
+      });
+    });
+  }
 
   // FAQ accordions
   document.querySelectorAll(".faq-item button").forEach((button) => {
@@ -203,6 +216,18 @@
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag("js", new Date());
     window.gtag("config", config.ga4MeasurementId);
+  }
+
+  // GA4 view_item fires on a real product-detail page view, without buyer details.
+  const productDetail = document.querySelector("[data-product-detail]");
+  if (productDetail) {
+    trackEvent("view_item", {
+      items: [{
+        item_id: productDetail.dataset.itemId || "",
+        item_name: productDetail.dataset.itemName || document.title,
+        item_category: productDetail.dataset.itemCategory || "Product"
+      }]
+    });
   }
 
   function trackEvent(name, parameters) {

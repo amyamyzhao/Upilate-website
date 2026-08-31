@@ -10,17 +10,50 @@
   const navToggle = document.querySelector("[data-nav-toggle]");
   const navMenu = document.querySelector("[data-nav-menu]");
   if (navToggle && navMenu) {
+    const mobileNavMedia = window.matchMedia("(max-width: 800px)");
+    const header = navToggle.closest("[data-header]");
+
+    const syncMobileNavPosition = () => {
+      if (!mobileNavMedia.matches || !header) {
+        navMenu.style.removeProperty("--mobile-nav-top");
+        return;
+      }
+
+      const headerBottom = Math.max(0, Math.round(header.getBoundingClientRect().bottom));
+      navMenu.style.setProperty("--mobile-nav-top", `${headerBottom}px`);
+    };
+
+    const closeMobileNav = () => {
+      navMenu.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
+      document.body.classList.remove("nav-open");
+    };
+
     navToggle.addEventListener("click", () => {
+      const willOpen = !navMenu.classList.contains("is-open");
+      if (willOpen) syncMobileNavPosition();
       const isOpen = navMenu.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
       document.body.classList.toggle("nav-open", isOpen);
     });
     navMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("is-open");
-        navToggle.setAttribute("aria-expanded", "false");
-        document.body.classList.remove("nav-open");
-      });
+      link.addEventListener("click", closeMobileNav);
+    });
+
+    window.addEventListener("resize", () => {
+      if (!mobileNavMedia.matches) closeMobileNav();
+      else if (navMenu.classList.contains("is-open")) syncMobileNavPosition();
+    });
+    window.visualViewport?.addEventListener("resize", () => {
+      if (navMenu.classList.contains("is-open")) syncMobileNavPosition();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navMenu.classList.contains("is-open")) {
+        closeMobileNav();
+        navToggle.focus();
+      }
     });
   }
 

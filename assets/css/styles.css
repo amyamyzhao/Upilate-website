@@ -105,6 +105,8 @@ h3 { line-height: 1.18; }
 .section-head h2 { max-width: 760px; margin-bottom: 0; }
 .section-head p:last-child { margin-bottom: .3rem; color: var(--ink-soft); }
 .section-dark .section-head p:last-child { color: rgba(255,255,255,.68); }
+.collection-conversion-copy > p { margin: 0; color: var(--ink-soft); }
+.collection-conversion-copy .hero-actions { margin-bottom: 0; }
 
 .hero { overflow: hidden; background: var(--cream); }
 .hero-grid { min-height: min(780px, calc(100vh - 120px)); display: grid; grid-template-columns: minmax(0, .92fr) minmax(420px, 1.08fr); }
@@ -270,6 +272,10 @@ h3 { line-height: 1.18; }
 .sock-hero-note strong { display: block; font-family: var(--serif); font-size: 1.35rem; font-weight: 400; }
 .sock-hero-note span { color: var(--ink-soft); font-size: .78rem; }
 .sock-program-feature { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: white; }
+.category-resource-link { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 1.25rem; padding: 1.15rem 1.25rem; border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,.62); }
+.category-resource-link p { margin: 0; color: var(--ink-soft); font-size: .82rem; }
+.category-resource-link .eyebrow { margin-bottom: .25rem; color: var(--ink); font-size: .62rem; }
+.category-resource-link .text-link { flex: 0 0 auto; }
 .sock-program-image { min-height: 560px; padding: clamp(1rem, 2.5vw, 2rem); display: grid; place-items: center; background: #f8f6f1; }
 .sock-program-image img { width: 100%; height: 100%; max-height: 540px; object-fit: contain; object-position: center; }
 .sock-program-copy { padding: clamp(2.2rem, 5vw, 4.8rem); display: flex; flex-direction: column; justify-content: center; }
@@ -364,6 +370,7 @@ h3 { line-height: 1.18; }
   .collection-grid { grid-template-columns: repeat(2, 1fr); }
   .sock-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sock-program-feature { grid-template-columns: 1fr; }
+  .category-resource-link { align-items: flex-start; flex-direction: column; gap: .8rem; }
   .sock-program-image { min-height: 480px; }
   .sock-quote-band { grid-template-columns: 1fr; }
   .package-wrap, .inquiry-grid { gap: 2.5rem; }

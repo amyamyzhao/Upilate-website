@@ -481,6 +481,12 @@ h3 { line-height: 1.18; }
 .product-evidence-grid figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: white; }
 .product-evidence-grid img { display: block; width: 100%; aspect-ratio: 1.35 / 1; object-fit: cover; }
 .product-evidence-grid figcaption { padding: .6rem .75rem; color: var(--ink-soft); font-size: .67rem; line-height: 1.4; }
+.product-evidence-choice { width: 100%; margin: 0; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: white; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.product-evidence-choice:hover { transform: translateY(-2px); }
+.product-evidence-choice.is-active { border-color: var(--clay); box-shadow: 0 0 0 2px rgba(182,125,99,.2); }
+.product-evidence-choice:focus-visible { outline: 3px solid rgba(121,139,119,.45); outline-offset: 3px; }
+.product-evidence-choice img { aspect-ratio: 1 / 1; object-fit: contain; background: #fff; }
+.product-evidence-choice span { display: block; padding: .6rem .75rem; color: var(--ink-soft); font-size: .67rem; line-height: 1.4; }
 .product-thumb-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: .55rem; margin-top: .8rem; }
 .product-thumb { aspect-ratio: 1 / 1; overflow: hidden; padding: .15rem; border: 1px solid var(--line); border-radius: .75rem; background: white; cursor: pointer; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
 .product-thumb:hover { transform: translateY(-2px); }
@@ -529,6 +535,15 @@ h3 { line-height: 1.18; }
 .detail-cta .btn-ghost { border-color: rgba(255,255,255,.55); color: white; }
 .detail-cta .btn-ghost:hover { background: white; color: var(--ink); }
 
+.speckled-colorblock-detail section[id] { scroll-margin-top: 112px; }
+.speckled-colorblock-detail .colorway-brief-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.speckled-colorblock-detail .colorway-brief-card { min-height: 220px; padding: 1.5rem; border: 1px solid var(--line); border-radius: 1.25rem; background: white; box-shadow: 0 14px 38px rgba(68,52,38,.06); }
+.speckled-colorblock-detail .colorway-brief-number { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--cream); color: var(--clay); font-family: var(--serif); font-style: italic; }
+.speckled-colorblock-detail .colorway-brief-card h3 { margin: 1rem 0 .7rem; font-family: var(--serif); font-size: 1.7rem; font-weight: 400; }
+.speckled-colorblock-detail .colorway-brief-card strong { display: inline-flex; padding: .35rem .58rem; border-radius: 999px; background: rgba(121,139,119,.12); color: var(--sage-dark); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
+.speckled-colorblock-detail .colorway-brief-card p { margin: .9rem 0 0; color: var(--ink-soft); font-size: .82rem; }
+.speckled-colorblock-detail .colorway-brief-note { margin: 1rem 0 0; color: var(--ink-soft); font-size: .78rem; }
+
 @media (max-width: 900px) {
   .product-detail-grid { grid-template-columns: 1fr; }
   .product-detail-copy, .faq-wrap > div:first-child { position: static; }
@@ -537,6 +552,7 @@ h3 { line-height: 1.18; }
   .finish-grid, .faq-wrap, .detail-cta-inner { grid-template-columns: 1fr; }
   .rfq-box { grid-template-columns: 1fr; gap: 1.5rem; }
   .detail-cta .hero-actions { justify-content: flex-start; }
+  .speckled-colorblock-detail .colorway-brief-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {
@@ -551,6 +567,8 @@ h3 { line-height: 1.18; }
   .spec-table td { min-width: 230px; }
   .rfq-box ol { grid-template-columns: 1fr; }
   .detail-cta .hero-actions .btn { width: 100%; }
+  .speckled-colorblock-detail .colorway-brief-grid { grid-template-columns: 1fr; }
+  .speckled-colorblock-detail .colorway-brief-card { min-height: 0; }
 }
 
 /* Editorial grip-sock retail guide */

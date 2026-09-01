@@ -210,7 +210,11 @@
       thumb.addEventListener("click", () => {
         galleryMain.src = thumb.dataset.image;
         galleryMain.alt = thumb.dataset.alt || "Custom Pilates grip sock product view";
-        galleryThumbs.forEach((item) => item.classList.toggle("is-active", item === thumb));
+        galleryThumbs.forEach((item) => {
+          const active = item === thumb;
+          item.classList.toggle("is-active", active);
+          if (item.hasAttribute("aria-pressed")) item.setAttribute("aria-pressed", String(active));
+        });
       });
     });
   }

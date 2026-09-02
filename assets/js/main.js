@@ -243,16 +243,31 @@
     document.querySelectorAll("[data-reveal]").forEach((element) => element.classList.add("is-visible"));
   }
 
-  // GA4: loaded only after a real Measurement ID is supplied.
+  // GA4: queue the base page view immediately, then fetch the vendor bundle
+  // after real engagement or once the critical rendering window has passed.
   if (/^G-[A-Z0-9]+$/i.test(config.ga4MeasurementId || "")) {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.ga4MeasurementId)}`;
-    document.head.appendChild(script);
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag("js", new Date());
     window.gtag("config", config.ga4MeasurementId);
+
+    let analyticsLoaded = false;
+    const loadAnalytics = () => {
+      if (analyticsLoaded) return;
+      analyticsLoaded = true;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.ga4MeasurementId)}`;
+      document.head.appendChild(script);
+    };
+
+    ["pointerdown", "touchstart", "scroll"].forEach((eventName) => {
+      window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+    });
+    window.addEventListener("keydown", loadAnalytics, { once: true });
+    window.addEventListener("load", () => {
+      window.setTimeout(loadAnalytics, 3500);
+    }, { once: true });
   }
 
   // GA4 view_item fires on a real product-detail page view, without buyer details.

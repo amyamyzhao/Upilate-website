@@ -1,5 +1,6 @@
 # Preserve old file-style URLs while declaring clean URLs as permanent.
 /index.html / 301
+/blog.html /blog 301
 /products.html /products 301
 /grip-socks.html /grip-socks 301
 /studio-solutions.html /studio-solutions 301
@@ -11,7 +12,9 @@
 /products/leopard-print-ruffle-ankle-grip-socks.html /products/leopard-print-ruffle-ankle-grip-socks 301
 /products/heritage-stripe-crew-grip-socks.html /products/heritage-stripe-crew-grip-socks 301
 /products/speckled-color-block-crew-grip-socks.html /products/speckled-color-block-crew-grip-socks 301
+/products/slouch-rib-crew-grip-socks.html /products/slouch-rib-crew-grip-socks 301
 /blog/pilates-studio-grip-sock-retail-mix.html /blog/pilates-studio-grip-sock-retail-mix 301
 /blog/compare-pilates-grip-sock-fit-wash-durability.html /blog/compare-pilates-grip-sock-fit-wash-durability 301
 /blog/wholesale-pilates-grip-socks-sizing-color-reorder.html /blog/wholesale-pilates-grip-socks-sizing-color-reorder 301
 /blog/grip-sock-packaging-studio-retail-wholesale.html /blog/grip-sock-packaging-studio-retail-wholesale 301
+/blog/how-to-design-custom-grip-socks-pilates-studio.html /blog/how-to-design-custom-grip-socks-pilates-studio 301

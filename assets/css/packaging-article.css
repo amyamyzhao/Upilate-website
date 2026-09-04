@@ -1,0 +1,26 @@
+.packaging-visual-hero { padding: 0 0 clamp(3.5rem, 7vw, 6rem); background: linear-gradient(180deg, #e8eee7 0%, #fbf8f3 52%, #fff 100%); }
+.packaging-hero-shot { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,.8fr); margin: 0; overflow: hidden; border: 1px solid rgba(182,125,99,.28); border-radius: var(--radius); background: #26231f; box-shadow: 0 28px 70px rgba(48,36,29,.16); }
+.packaging-hero-shot img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.packaging-hero-shot figcaption { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: clamp(1.5rem,3vw,3rem); color: white; overflow-wrap: anywhere; }
+.packaging-hero-shot figcaption .eyebrow { color: #d8b69e; }
+.packaging-hero-shot figcaption h2 { margin-bottom: 1.2rem; font-family: var(--serif); font-size: clamp(2.2rem,3.4vw,3.8rem); font-weight: 400; }
+.packaging-hero-shot figcaption p:not(.eyebrow) { color: rgba(255,255,255,.74); line-height: 1.8; }
+.packaging-proof-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 2rem; }
+.packaging-proof-grid figure, .blog-card-media { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: white; }
+.packaging-proof-grid img, .blog-card-media img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.packaging-proof-grid figcaption, .blog-card-media figcaption { padding: 1rem 1.1rem 1.15rem; color: var(--ink-soft); font-size: .78rem; line-height: 1.65; }
+.packaging-proof-grid figcaption strong { color: var(--ink); }
+.blog-card-media { margin-top: 1.6rem; }
+.packaging-detail-proof, .packaging-structure-proof { display: grid; grid-template-columns: minmax(280px,.82fr) minmax(0,1.18fr); margin: 2rem 0 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: 0 20px 54px rgba(48,36,29,.09); }
+.packaging-detail-proof img, .packaging-structure-proof img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.packaging-detail-proof figcaption, .packaging-structure-proof figcaption { display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem,5vw,4.5rem); }
+.packaging-detail-proof h3, .packaging-structure-proof h3 { margin-bottom: 1rem; font-family: var(--serif); font-size: clamp(2rem,3.2vw,3.4rem); font-weight: 400; }
+.packaging-detail-proof figcaption > p:last-child, .packaging-structure-proof figcaption > p:last-child { color: var(--ink-soft); line-height: 1.8; }
+.packaging-structure-proof { grid-template-columns: minmax(0,1.18fr) minmax(280px,.82fr); margin-bottom: 1.5rem; background: var(--cream); }
+
+
+.packaging-evidence-section { padding-top: 0; }
+@media (max-width: 800px) {
+  .packaging-hero-shot, .packaging-proof-grid, .packaging-detail-proof, .packaging-structure-proof { grid-template-columns: 1fr; }
+  .packaging-hero-shot img, .packaging-detail-proof img, .packaging-structure-proof img { min-height: 0; height: auto; aspect-ratio: 1; }
+}

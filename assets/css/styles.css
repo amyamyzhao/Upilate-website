@@ -538,6 +538,7 @@ h3 { line-height: 1.18; }
 .product-evidence-choice span { display: block; padding: .6rem .75rem; color: var(--ink-soft); font-size: .67rem; line-height: 1.4; }
 .slouch-rib-detail .product-evidence-grid { width: min(100%, 360px); grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ribbon-bow-detail .product-evidence-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pearl-detail-product .product-evidence-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ribbon-bow-detail .product-detail-hero { background: linear-gradient(120deg, #efe5d8 0%, #fbf8f3 58%, #ead8c6 100%); }
 .product-thumb-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: .55rem; margin-top: .8rem; }
 .product-thumb { aspect-ratio: 1 / 1; overflow: hidden; padding: .15rem; border: 1px solid var(--line); border-radius: .75rem; background: white; cursor: pointer; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }

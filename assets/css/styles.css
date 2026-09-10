@@ -648,9 +648,18 @@ h3 { line-height: 1.18; }
 .blog-source-hero { max-width: 760px; margin: 0 auto 2rem; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: 0 22px 58px rgba(48,36,29,.1); }
 .blog-source-hero img { display: block; width: 100%; height: auto; }
 .blog-source-hero figcaption { padding: .75rem 1rem; color: var(--ink-soft); font-size: .72rem; line-height: 1.55; }
+.grip-pattern-hero img { max-height: 760px; object-fit: contain; background: #f8f6f2; }
+.grip-pattern-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: .8rem; }
+.grip-pattern-card { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: 0 14px 38px rgba(68,52,38,.06); }
+.grip-pattern-card img { display: block; width: 100%; height: clamp(220px, 22vw, 320px); object-fit: contain; object-position: center; background: #f8f6f2; }
+.grip-pattern-card figcaption { display: grid; gap: .35rem; min-height: 132px; padding: .8rem .85rem 1rem; color: var(--ink-soft); font-size: .7rem; line-height: 1.55; }
+.grip-pattern-card figcaption strong { color: var(--ink); font-family: var(--serif); font-size: 1rem; font-weight: 500; }
 
 @media (max-width: 800px) {
   .blog-lead, .blog-card-grid { grid-template-columns: 1fr; }
+  .grip-pattern-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(240px, 82vw); overflow-x: auto; overscroll-behavior-inline: contain; padding-bottom: .75rem; scroll-snap-type: inline mandatory; }
+  .grip-pattern-card { scroll-snap-align: start; }
+  .grip-pattern-card img { height: 260px; }
   .blog-page-hero h1 { font-size: clamp(3rem, 12vw, 4.8rem); }
 }
 
